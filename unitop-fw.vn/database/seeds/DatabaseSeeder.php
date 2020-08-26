@@ -12,16 +12,28 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
-        $this->call(userSeeder::class);
+        //$this->call(userSeeder::class);
+        $this->call(loaispSeeder::class);
     }
 }
 
 class userSeeder extends Seeder{
     public function run(){
         DB::table('users')->insert([
-            ['name' => 'Dang','email' => Str::random(4).'to@gmail.com','password' => bcrypt('matkhau')]
-            //['name' => 'Tien','email' => 'tien@gmail.com','password' => bcrypt('matkhau')],
-            //['name' => 'Tung','email' => 'tung@gmail.com','password' => bcrypt('matkhau')]
+            ['name' => 'Dang','email' => Str::random(4).'to@gmail.com','password' => bcrypt('matkhau')],
+            ['name' => 'to','email' => Str::random(4).'to@gmail.com','password' => bcrypt('matkhau')],
+            ['name' => 'toan','email' => Str::random(4).'to@gmail.com','password' => bcrypt('matkhau')],
+            ['name' => 'Tien','email' => 'tien@gmail.com','password' => bcrypt('matkhau')],
+            ['name' => 'Tung','email' => 'tung@gmail.com','password' => bcrypt('matkhau')]
+        ]);
+    }
+}
+
+class loaispSeeder extends Seeder{
+    public function run(){
+        DB::table('loaisanpham')->insert([
+            ['ten' => 'laptop'],
+            ['ten' => 'dien thoai']
         ]);
     }
 }

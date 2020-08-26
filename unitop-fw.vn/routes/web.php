@@ -172,3 +172,134 @@ Route::get('qb/get',function(){
         echo '<br>';
     }
 });
+
+//query thêm điều kiện where
+Route::get('qb/where',function(){
+    $data = DB::table('users')->where('name','Toan')->get();
+    foreach($data as $item){
+        foreach($item as $key=>$value){
+            echo $key." : ".$value."<br>";
+        }
+        echo "<hr>";
+    }
+});
+
+//select id,name,email....
+Route::get('qb/select',function(){
+    $data = DB::table('users')->where('id',1)->select('id','name','email')->get();
+    foreach($data as $item){
+        foreach($item as $key=>$value){
+            echo $key." : ".$value."<br>";
+        }
+        echo "<hr>";
+    }
+});
+
+//select name as hoten form....
+Route::get('qb/raw',function(){
+    $data = DB::table('users')->where('id',1)->select(DB::raw('id as maso,name as hoten,email'))->get();
+    foreach($data as $item){
+        foreach($item as $key=>$value){
+            echo $key." : ".$value."<br>";
+        }
+        echo "<hr>";
+    }
+});
+
+//oderBy
+//select name as hoten form....
+Route::get('qb/orderBy',function(){
+    $data = DB::table('users')->where('id','>',1)->select(DB::raw('id as maso,name as hote
+    n,email'))->orderBy('id','desc')->take(3)->get();
+    foreach($data as $item){
+        foreach($item as $key=>$value){
+            echo $key." : ".$value."<br>";
+        }
+        echo "<hr>";
+    }
+});
+
+//update data bằng builder
+Route::get('qb/update',function(){
+    $data = DB::table('users')->where('id',1)->update(['name'=>'Toan shinoda','email'=>'toanshinoda@gmail.com']);
+    echo "da update";
+});
+
+//delete(xoas du lieu)
+Route::get('qb/delete',function(){
+    $data = DB::table('users')->where('id',1)->delete();
+    echo "da xa";
+});
+
+//truncate(xoa het du lieu trong bang va reset chi so tu tang ve 0)
+Route::get('qb/truncate',function(){
+    $data = DB::table('users')->truncate();
+    echo "da truncate";
+});
+
+//Model app/User.php
+Route::get('model/save',function(){
+    $user = new App\User();
+
+    $user->name = 'Huyen';
+    $user->email = 'huyen@gmail.com';
+    $user->password = 'mat khau';
+
+    $user->save();
+
+    echo "da thu hien save()";
+});
+
+//Model function find('khoa chinh')
+Route::get('model/query',function(){
+    $user = App\User::find(4);
+    echo $user->name;
+});
+
+//tu tao model SanPham
+Route::get('model/sanpham/save/{ten}/{soluong}',function($ten,$soluong){
+    $sanpham = new App\SanPham();
+
+    $sanpham->ten = $ten;
+    $sanpham->soluong = $soluong;
+
+    $sanpham->save();
+});
+
+//model laays toanf booj duwx lieeuj trong bangr
+Route::get('model/sanpham/all',function(){
+    $sanpham = App\SanPham::all()->toArray();
+    // foreach($sanpham as $item){
+    //     forearch($item as $key=>$value){
+    //         echo $key." : ".$item.'<br>';
+    //     }
+    // }
+    var_dump($sanpham);
+});
+
+//tạo bảng loaisanpham
+//bai:35 liên kết dữ liệu trong Model
+Route::get('taobang',function(){
+    Schema::create('LoaiSanPham',function($table){
+        $table->increments('id');
+        $table->string('ten');
+    });
+});
+//them khóa phụ cho bang sanpham
+Route::get('taocot',function(){
+    Schema::table('sanpham',function($table){
+        $table->integer('id_loaisanpham')->unsigned;
+    });
+});
+//đã tạo liên kết sanpham->loaisanpham trong model SamPham ta sẽ chạy thử
+Route::get('lienket',function(){
+    //gọi hàm 'loaisanpham' ở model SanPham
+    $data = App\SanPham::find(3)->loaisanpham->toArray();
+    var_dump($data);
+});
+//đã tạo liên kết sanpham<-loaisanpham
+Route::get('lienketloaisanpham',function(){
+    //gọi hàm 'loaisanpham' ở model SanPham
+    $data = App\LoaiSanPham::find(1)->sanpham->toArray();
+    var_dump($data);
+});

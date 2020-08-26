@@ -1,0 +1,16 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class SanPham extends Model
+{
+    //kết nối bảng dữ liệu
+    protected $table = "sanpham";
+    public $timestamps = false;
+
+    public function loaisanpham(){
+        return $this->belongsTo('App\LoaiSanPham','id_loaisanpham','id');
+    }
+}
