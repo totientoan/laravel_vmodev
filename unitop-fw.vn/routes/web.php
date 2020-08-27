@@ -303,3 +303,55 @@ Route::get('lienketloaisanpham',function(){
     $data = App\LoaiSanPham::find(1)->sanpham->toArray();
     var_dump($data);
 });
+
+//bảo mật với middleware
+Route::get('diem',function(){
+    echo "Bạn đã qua môn";
+})->middleware('Mymiddle')->name('diem');
+Route::get('loi',function(){
+    echo "Bạn đã tạch môn";
+})->name('loi');
+Route::get('nhapdiem',function(){
+    return view('nhapdiem');
+})->name('nhapdiem');
+
+//tìm hiểu Auth
+Route::get('dangnhap',function(){
+    return view('formdangnhap');
+});
+Route::get('thu',function(){
+    return view('thanhcong');
+});
+Route::post('login','AuthController@login')->name('login');
+//truyền url nên k cần đặt tên
+Route::get('logout','AuthController@logout');
+
+//làm việc với Session
+Route::group(['middleware'=>['web']],function(){
+    Route::get('Session',function(){
+        //tạo session
+        //Session::put('khoahoc','laravel');
+        echo "đã đặt session";
+        echo "<br>";
+        echo Session::get('mess');
+
+        //echo Session::get('khoahoc');
+        if(Session::has('khoahoc')){
+            //forget('ten') xóa ,flush() xóa hết
+            //Session::forget('khoahoc');
+            echo 'đã xóa session khóa học';
+        }else{
+            echo "không tồn tại khóa học";
+        }
+    });
+
+    Route::get('Session/flash',function(){
+        //Session::flash('mess','hello');
+        echo "đã đặt session";
+        echo "<br>";
+        echo Session::get('mess');
+    });
+});
+
+//phân trang dùng Pagination
+Route::get('Pagination/sanpham','phanTrangPagination@phantrang');
