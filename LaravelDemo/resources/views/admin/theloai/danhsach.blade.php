@@ -7,10 +7,15 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Thể Loại
-                    <small>List</small>
+                    <small></small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
+            @if(session()->get('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
@@ -28,7 +33,7 @@
                         <td>{{$tl->Ten}}</td>
                         <td>{{$tl->TenKhongDau}}</td>
             
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/theloai/xoa"> Delete</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/theloai/xoa/{{$tl->id}}"> Delete</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/theloai/sua/{{$tl->id}}">Edit</a></td>
                     </tr>
                     @endforeach

@@ -14,7 +14,7 @@
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form action="" method="POST">
+                <form action="admin/loaitin/them" method="POST">
                     <div class="form-group">
                         <label>Category Parent</label>
                         <select class="form-control">

@@ -22,18 +22,26 @@ Route::group(['prefix'=>'admin'],function(){
         //admin/theloai/them
         Route::get('danhsach','TheLoaiController@getDanhSach');
 
-        Route::get('sua','TheLoaiController@getSua');
+        Route::get('sua/{id}','TheLoaiController@getSua');
+        Route::post('sua/{id}','TheLoaiController@postSua');
 
-        Route::get('them','ThemLoaiController@getThem');
+        Route::get('them','TheLoaiController@getThem');
+        Route::POST('them','TheLoaiController@postThem');
+
+        Route::get('xoa/{id}','TheLoaiController@xoa');
     });
 
     Route::group(['prefix'=>'loaitin'],function(){
         //admin/loaitin/them
-        Route::get('danhsach','LoaiTinController@getDanhSach');
+        Route::get('danhsach','LoaiTinController@getLoaiTin');
 
-        Route::get('sua','LoaiTinController@getSua');
+        Route::get('sua/{id}','LoaiTinController@getSua');
+        Route::post('sua/{id}','LoaiTinController@postSua');
         
         Route::get('them','LoaiTinController@getThem');
+        Route::POST('them','LoaiTinController@postThem');
+
+        Route::get('xoa/{id}','LoaiTinController@xoa');
     });
 
     Route::group(['prefix'=>'tintuc'],function(){
