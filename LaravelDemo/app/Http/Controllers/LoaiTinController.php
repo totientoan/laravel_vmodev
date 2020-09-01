@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LoaiTin;
 use App\TheLoai;
+use App\TinTuc;
 
 class LoaiTinController extends Controller
 {
@@ -77,7 +78,13 @@ class LoaiTinController extends Controller
     }
 
     public function xoa($id){
-        LoaiTin::find($id)->delete();
-        return redirect('admin/loaitin/danhsach')->with('success','đã xóa loại tin');
+        $loaitin = LoaiTin::find($id);
+        if(count($loaitin->tintuc) == 0){
+            $loaitin->delete();
+            return redirect('admin/loaitin/danhsach')->with('success','đã xóa loại tin');
+        }
+        else{
+            return redirect('admin/loaitin/danhsach')->with('loi','Xóa thất bại');
+        }
     }
 }

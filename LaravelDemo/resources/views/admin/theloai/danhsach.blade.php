@@ -15,6 +15,10 @@
                 <div class="alert alert-success">
                     {{ session()->get('success') }}
                 </div>
+            @elseif(session()->get('loi')) 
+                <div class="alert alert-danger">
+                    {{ session()->get('loi') }}
+                </div>    
             @endif
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>

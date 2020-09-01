@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TheLoai;
+use App\LoaiTin;
 
 class TheLoaiController extends Controller
 {
@@ -71,7 +72,13 @@ class TheLoaiController extends Controller
     }
 
     public function xoa($id){
-        TheLoai::find($id)->delete();
-        return redirect('admin/theloai/danhsach')->with('success','đã xóa thể loại');
+        $theloai = TheLoai::find($id);
+        if(count($theloai->loaitin) == 0){
+            $theloai->delete();
+            return redirect('admin/theloai/danhsach')->with('success','đã xóa thể loại');
+        }
+        else{
+            return redirect('admin/theloai/danhsach')->with('loi','Xóa thất bại');
+        }
     }
 }

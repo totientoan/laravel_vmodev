@@ -32,13 +32,13 @@
                         <tr class="even gradeC" align="center">
                             <td>{{$lt->id}}</td>
 
-                            @foreach ($theloai as $tl)
+                            {{-- @foreach ($theloai as $tl)
                                 @if ($tl->id == $lt->idTheLoai)
                                     <td>{{$tl->Ten}}</td>
                                     @break;
                                 @endif
-                             @endforeach
-
+                             @endforeach --}}
+                            <td>{{$lt->theloai->Ten}}</td>
                             <td>{{$lt->Ten}}</td>
                             <td>{{$lt->TenKhongDau}}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/loaitin/xoa/{{$lt->id}}"> Delete</a></td>
