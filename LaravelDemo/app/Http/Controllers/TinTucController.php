@@ -16,6 +16,7 @@ class TinTucController extends Controller
     }
 
     public function getSua($id){ 
+        
         $tintuc = TinTuc::find($id);
         $theloai = TheLoai::all();
         $loaitin = LoaiTin::all();
