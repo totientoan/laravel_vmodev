@@ -6,13 +6,13 @@
 
         @foreach ($theloai as $tl)
             @if (count($tl->loaitin) > 0)
-                <li href="" class="list-group-item menu1">
-                    <a href="">{{$tl->Ten}}</a>
+                <li href="#" class="list-group-item menu1">
+                    <a >{{$tl->Ten}}</a>
                 </li>
                     <ul>
                         @foreach ($tl->loaitin as $lt)
                         <li class="list-group-item">
-                            <a href="">{{$lt->Ten}}</a>
+                            <a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}.html">{{$lt->Ten}}</a>
                         </li>
                         @endforeach
                     </ul>

@@ -100,3 +100,13 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 Route::get('trangchu','PagesController@trangchu');
 Route::get('lienhe','PagesController@lienhe');
 Route::get('loaitin/{id}/{TenKhongGiau}.html','PagesController@loaitin');
+Route::get('tintuc/{id}/{TenKhongGiau}.html','PagesController@tintuc');
+
+Route::get('dangnhap','PagesController@getDangnhap');
+Route::post('dangnhap','PagesController@postDangnhap');
+Route::get('dangxuat','PagesController@postDangxuat');
+
+Route::post('comment/{idTinTuc}','PagesController@postComment');
+
+Route::get('nguoidung','PagesController@getNguoidung');
+Route::post('nguoidung','PagesController@postNguoidung');

@@ -25,9 +25,9 @@
                         </div>
 
                         <div class="col-md-9">
-                            <h3>Project Five</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident .</p>
-                            <a class="btn btn-primary" href="detail.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <h3>{{$tt->TieuDe}}</h3>
+                            <p>{{$tt->TomTat}}</p>
+                            <a class="btn btn-primary" href="detail.html">xem thêm<span class="glyphicon glyphicon-chevron-right"></span></a>
                         </div>
                         <div class="break"></div>
                     </div>
@@ -39,9 +39,10 @@
                         <div class="col-lg-12">
                             <ul class="pagination">
                                 <li>
-                                    <a href="#">&laquo;</a>
+                                    {{-- <a href="#">&laquo;</a> --}}
+                                    {{ $tintuc->links() }}
                                 </li>
-                                <li class="active">
+                                {{-- <li class="active">
                                     <a href="#">1</a>
                                 </li>
                                 <li>
@@ -58,7 +59,7 @@
                                 </li>
                                 <li>
                                     <a href="#">&raquo;</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>

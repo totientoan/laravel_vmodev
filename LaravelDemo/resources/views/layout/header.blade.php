@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Laravel Tin Tức</a>
+            <a class="navbar-brand" href="trangchu">Laravel Tin Tức</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,22 +29,29 @@
             </form>
 
             <ul class="nav navbar-nav pull-right">
+                @if (!Auth::check())
+                    
                 <li>
-                    <a href="#">Đăng ký</a>
+                    <a href="dangky">Đăng ký</a>
                 </li>
                 <li>
-                    <a href="#">Đăng nhập</a>
+                    <a href="dangnhap">Đăng nhập</a>
                 </li>
+
+                @else
+
                 <li>
-                    <a>
+                    <a href="nguoidung">
                         <span class ="glyphicon glyphicon-user"></span>
-                        Bùi Đức Phú
+                        {{Auth::user()->name}}
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">Đăng xuất</a>
+                    <a href="dangxuat">Đăng xuất</a>
                 </li>
+
+                @endif
                 
             </ul>
         </div>
